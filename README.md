@@ -1,4 +1,4 @@
-# Go directory tree
+# Go directory tree / Программа вывода дерева файлов
 ### RUN
 1. `go run main.go` `path (form main.go)` `with files (-f)`
 ### TESTS: 
