@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"time"
 )
 
 func main() {
@@ -21,10 +20,6 @@ func main() {
 	err := dirTree(out, path, printFiles)
 	if err != nil {
 		panic(err)
-	}
-
-	for {
-		time.Sleep(1 * time.Nanosecond)
 	}
 }
 
