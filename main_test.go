@@ -42,9 +42,10 @@ func TestDirTreeWithFiles(t *testing.T) {
 	if err != nil {
 		t.Errorf("test for OK Failed - error")
 	}
+
 	result := out.String()
 	if result != testDirTreeWithFiles {
-		t.Errorf("test for OK Failed - results not match\nGot:\n%v\nExpected:\n%v", result, testDirTreeWithFiles)
+		t.Errorf("got:\n%s\nexpected:\n%s\n", result, testDirTreeWithFiles)
 	}
 }
 
@@ -70,7 +71,7 @@ func TestDirTreeWithoutFiles(t *testing.T) {
 	}
 	result := out.String()
 	if result != testDirTreeWithoutFiles {
-		t.Errorf("test for OK Failed - results not match\nGot:\n%v\nExpected:\n%v", result, testDirTreeWithoutFiles)
+		t.Errorf("got:\n%s\nexpected:\n%s\n", result, testDirTreeWithoutFiles)
 	}
 }
 

@@ -11,11 +11,11 @@ import (
 func main() {
 	out := os.Stdout
 	if !(len(os.Args) == 2 || len(os.Args) == 3) {
-		panic("usage go run main.go . [-f]")
+		panic("usage go run main.go . --f")
 	}
 
 	path := os.Args[1]
-	printFiles := len(os.Args) == 3 && os.Args[2] == "-f"
+	printFiles := len(os.Args) == 3 && os.Args[2] == "--f"
 
 	err := dirTree(out, path, printFiles)
 	if err != nil {
@@ -51,24 +51,24 @@ func dirTree(out io.Writer, path string, printFiles bool) error {
 				return err
 			}
 
-			var pref string
+			var fPref string
 			if i+1 == len(entries) {
-				pref = "└───"
+				fPref = "└───"
 			} else {
-				pref = "├───"
+				fPref = "├───"
 			}
 
 			if entry.IsDir() {
-				fmt.Fprintf(out, "%s%s\n", init+pref, eInfo.Name())
+				fmt.Fprintf(out, "%s%s\n", init+fPref, eInfo.Name())
 
-				var pref2 string
+				var sPref string
 				if i+1 == len(entries) {
-					pref2 += init + "\t"
+					sPref += init + "\t"
 				} else {
-					pref2 += init + "│\t"
+					sPref += init + "│\t"
 				}
 
-				err = printTree(filepath.Join(path, eInfo.Name()), pref2, printFiles)
+				err = printTree(filepath.Join(path, eInfo.Name()), sPref, printFiles)
 				if err != nil {
 					return err
 				}
@@ -79,7 +79,7 @@ func dirTree(out io.Writer, path string, printFiles bool) error {
 				} else {
 					size = "empty"
 				}
-				fmt.Fprintf(out, "%s%s (%s)\n", init+pref, eInfo.Name(), size)
+				fmt.Fprintf(out, "%s%s (%s)\n", init+fPref, eInfo.Name(), size)
 			}
 		}
 
